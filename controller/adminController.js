@@ -7,11 +7,23 @@ exports.contactEmail = async (req, res) => {
             subject: `Hello ,  ${req.body.subject}`,
             message: `My email is ${req.body.to}, \n  \n ${req.body.message} `
         })
-        if (x) {
+
+        const y = await sendEmail({
+            to: req.body.to,
+            subject: "Thanks for contacting",
+            message: `Hello ${req.body.subject} \n \n  Thank Your for reaching out! Your message has been received. \n \n \n \n I'll get back to you soon!    \n Best Regards Samadhan Bodkhe😎 `
+        })
+
+        if (x || y) {
             res.status(200).json({ message: "email send success" })
         } else {
-            res.status(400).json({ message: "unable to send email" })
+            res.status(400).json({ message: "Unable to send email" })
+
         }
+
+
+
+
     }
 
 
