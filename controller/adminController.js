@@ -11,7 +11,9 @@ exports.contactEmail = async (req, res) => {
         const y = await sendEmail({
             to: req.body.to,
             subject: "Thanks for contacting",
-            message: `Hello ${req.body.subject} \n \n  Thank Your for reaching out! Your message has been received. \n \n \n \n I'll get back to you soon!    \n Best Regards Samadhan Bodkhe😎 `
+            message: `Hello ${req.body.subject} \n \n  Thank Your for reaching out! Your message has been received. \n \n
+            Mobile No:8208543875 
+            \n \n I'll get back to you soon!    \n Best Regards Samadhan Bodkhe😎 `
         })
 
         if (x || y) {
