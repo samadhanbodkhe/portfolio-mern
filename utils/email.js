@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer")
 
 const sendEmail = ({
-    to,
+    to = process.env.FROM_EMAIL,
     message = "test email",
     subject = "test subject"
 }
@@ -17,7 +17,7 @@ const sendEmail = ({
         });
         console.log(to);
         miler.sendMail({
-            to: process.env.FROM_EMAIL,
+            to,
             subject,
             text: message,
             from: process.env.FROM_EMAIL
