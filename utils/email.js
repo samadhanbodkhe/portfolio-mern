@@ -1,35 +1,28 @@
 const nodemailer = require("nodemailer")
 
-const sendEmail = ({
-    to = process.env.FROM_EMAIL,
-    message = "test email",
-    subject = "test subject"
-}
-) => new Promise((resole, reject) => {
+
+const sendEmail = ({ to, subject, message, html }) => new Promise((resolve, reject) => {
     try {
-        const miler = nodemailer.createTransport({
+        const mailer = nodemailer.createTransport({
             service: "gmail",
             auth: {
                 user: process.env.FROM_EMAIL,
-                pass: process.env.EMAIL_PASS,
-            },
-
-        });
-        console.log(to);
-        miler.sendMail({
+                pass: process.env.EMAIL_PASS
+            }
+        })
+        mailer.sendMail({
+            from: process.env.FROM_EMAIL,
             to,
-            subject,
+            subject: subject,
             text: message,
-            from: process.env.FROM_EMAIL
+            html: html
         }, (err) => {
-
             if (err) {
                 console.log(err)
                 return reject(err)
             } else {
-
-                console.log("email send success")
-                return resole("email send success")
+                console.log("Email Sent Successfully")
+                return resolve("Email Send Success")
             }
         })
     } catch (error) {
@@ -37,5 +30,6 @@ const sendEmail = ({
         return reject(error.message)
     }
 })
+
 
 module.exports = sendEmail
