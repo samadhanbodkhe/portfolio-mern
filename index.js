@@ -10,10 +10,7 @@ const app = express()
 
 app.use(express.static(path.join(__dirname, "dist")))
 app.use(express.json())
-app.use(cors({
-    // origin: "https://samadhanbodkhe-portfolio.onrender.com",
-    origin: "http://localhost:5173"
-}))
+app.use(cors())
 app.use("/api/admin", require("./routes/adminRoute"))
 app.use("/api/admin/portfolio", require("./routes/adminRoute"))
 
